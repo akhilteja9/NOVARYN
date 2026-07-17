@@ -5,6 +5,7 @@ Reusable CSS and UI helpers.
 
 import streamlit as st
 
+
 # -------------------------------------------------------
 # Color Palette
 # -------------------------------------------------------
@@ -22,6 +23,7 @@ SUCCESS = "#4CAF50"
 WARNING = "#F9A825"
 ERROR = "#E53935"
 
+
 # -------------------------------------------------------
 # Page Config
 # -------------------------------------------------------
@@ -32,7 +34,7 @@ def configure_page():
         page_title="NOVARYN",
         page_icon="⚖️",
         layout="wide",
-        initial_sidebar_state="expanded"
+        initial_sidebar_state="collapsed"
     )
 
 
@@ -46,171 +48,474 @@ def load_css():
 
 <style>
 
-/* Background */
+/* ===============================
+   GLOBAL
+================================ */
 
 .stApp {{
-    background:{BACKGROUND};
+
+    background:
+    radial-gradient(
+        circle at top right,
+        #211b0d 0%,
+        transparent 35%
+    ),
+    {BACKGROUND};
+
     color:{TEXT};
+
+    font-family:
+    "Inter",
+    "Segoe UI",
+    sans-serif;
+
 }}
 
-/* Sidebar */
+
+.main {{
+    padding-top:20px;
+}}
+
+
+/* ===============================
+   SIDEBAR
+================================ */
+
 
 [data-testid="stSidebar"] {{
-    background:#111111;
-    border-right:1px solid #2C2C2C;
+
+    background:
+    linear-gradient(
+        180deg,
+        #111111,
+        #0B0B0B
+    );
+
+    border-right:
+    1px solid rgba(201,164,76,0.18);
+
 }}
 
-/* Buttons */
 
-.stButton>button {{
+[data-testid="stSidebar"] * {{
+
+    color:#E8E8E8;
+
+}}
+
+
+
+/* ===============================
+   LOGO
+================================ */
+
+
+.logo img {{
+
+    width:90px;
+
+    display:block;
+
+    margin:
+    10px auto 20px auto;
+
+}}
+
+
+
+
+/* ===============================
+   BUTTONS
+================================ */
+
+
+.stButton > button {{
 
     width:100%;
 
-    background:{PRIMARY};
+    background:
+    linear-gradient(
+        135deg,
+        {PRIMARY},
+        {SECONDARY}
+    );
 
-    color:black;
+
+    color:#090909;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    font-weight:bold;
+    padding:
+    11px 18px;
 
-    padding:10px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    transition:.25s;
 
 }}
 
-.stButton>button:hover {{
 
-    background:{SECONDARY};
+
+.stButton > button:hover {{
+
+    transform:
+    translateY(-2px);
+
+
+    box-shadow:
+    0 8px 25px
+    rgba(201,164,76,.25);
 
 }}
 
-/* Cards */
+
+
+/* ===============================
+   RADIO BUTTONS
+================================ */
+
+
+div[role="radiogroup"] {{
+
+    background:#131313;
+
+    padding:12px;
+
+    border-radius:16px;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+}}
+
+
+
+div[role="radiogroup"] label {{
+
+    background:#1B1B1B;
+
+    padding:
+    10px 14px;
+
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+    border:
+    1px solid transparent;
+
+    transition:.2s;
+
+}}
+
+
+
+div[role="radiogroup"] label:hover {{
+
+    background:#222;
+
+    border-color:{PRIMARY};
+
+}}
+
+
+
+div[role="radiogroup"] label:has(input:checked) {{
+
+    background:
+    rgba(201,164,76,.15);
+
+    border:
+    1px solid {PRIMARY};
+
+}}
+
+
+
+div[role="radiogroup"] input {{
+
+    accent-color:{PRIMARY};
+
+}}
+
+
+
+
+/* ===============================
+   CARDS
+================================ */
+
 
 .card {{
 
-    background:{CARD};
+    background:
 
-    border-radius:14px;
+    linear-gradient(
+        145deg,
+        #191919,
+        #121212
+    );
 
-    padding:20px;
 
-    margin-bottom:15px;
+    border-radius:18px;
 
-    border:1px solid #2C2C2C;
+
+    padding:22px;
+
+
+    margin-bottom:18px;
+
+
+    border:
+    1px solid rgba(255,255,255,.07);
+
+
+    box-shadow:
+
+    0 10px 30px
+    rgba(0,0,0,.3);
 
 }}
 
-/* Titles */
+
+
+
+/* ===============================
+   TITLES
+================================ */
+
 
 .title {{
 
-    font-size:32px;
+    font-size:34px;
 
-    font-weight:bold;
+    font-weight:750;
+
+    letter-spacing:-1px;
 
     color:{PRIMARY};
 
 }}
 
+
+
 .subtitle {{
 
     color:{MUTED};
 
-    font-size:16px;
+    font-size:15px;
+
+    margin-top:6px;
 
 }}
 
-/* Metrics */
+
+
+
+/* ===============================
+   METRICS
+================================ */
+
 
 .metric {{
 
-    background:#1B1B1B;
+    background:#151515;
 
-    border-left:5px solid {PRIMARY};
+    padding:18px;
 
-    padding:15px;
+    border-radius:16px;
 
-    border-radius:12px;
-
-    margin-bottom:10px;
+    border-left:
+    4px solid {PRIMARY};
 
 }}
+
+
 
 .metric-title {{
 
-    color:{MUTED};
+    color:#999;
 
-    font-size:14px;
+    font-size:13px;
+
+    text-transform:
+    uppercase;
+
+    letter-spacing:1px;
 
 }}
 
+
+
 .metric-value {{
 
-    font-size:28px;
+    margin-top:5px;
 
-    font-weight:bold;
+    font-size:30px;
+
+    font-weight:700;
 
     color:white;
 
 }}
 
-/* Chat */
+
+
+
+/* ===============================
+   INPUTS
+================================ */
+
+
+.stTextInput input,
+.stTextArea textarea,
+.stSelectbox div {{
+
+    background:#151515 !important;
+
+    color:white !important;
+
+    border-radius:12px !important;
+
+}}
+
+
+
+.stTextInput input:focus,
+.stTextArea textarea:focus {{
+
+    border:
+    1px solid {PRIMARY} !important;
+
+    box-shadow:
+    0 0 0 2px
+    rgba(201,164,76,.15);
+
+}}
+
+
+
+
+/* ===============================
+   CHAT
+================================ */
+
 
 .user-msg {{
 
-    background:#222;
+    background:#242424;
 
-    padding:12px;
+    padding:14px;
 
-    border-radius:10px;
+    border-radius:14px;
+
+    margin-bottom:10px;
 
 }}
+
+
 
 .bot-msg {{
 
-    background:#1A1A1A;
+    background:#161616;
 
-    border-left:4px solid {PRIMARY};
+    padding:14px;
 
-    padding:12px;
+    border-radius:14px;
 
-    border-radius:10px;
+    border-left:
+    4px solid {PRIMARY};
 
 }}
 
-/* Footer */
+
+
+
+/* ===============================
+   DIVIDER
+================================ */
+
+
+hr {{
+
+    border-color:
+    rgba(255,255,255,.08);
+
+}}
+
+
+
+
+/* ===============================
+   FOOTER
+================================ */
+
 
 .footer {{
 
     text-align:center;
 
-    color:gray;
+    color:#777;
 
-    margin-top:30px;
+    font-size:13px;
+
+    margin-top:40px;
 
 }}
+
 
 </style>
 
 """, unsafe_allow_html=True)
 
 
+
 # -------------------------------------------------------
 # Components
 # -------------------------------------------------------
+
+
+def logo(path="logo.png"):
+
+    st.markdown(
+        "<div class='logo'>",
+        unsafe_allow_html=True
+    )
+
+    st.image(
+        path,
+        width=90
+    )
+
+    st.markdown(
+        "</div>",
+        unsafe_allow_html=True
+    )
+
+
 
 def title(text, subtitle=""):
 
     st.markdown(
         f"""
-<div class='title'>{text}</div>
-<div class='subtitle'>{subtitle}</div>
+<div class='title'>
+{text}
+</div>
+
+<div class='subtitle'>
+{subtitle}
+</div>
+
 <br>
 """,
         unsafe_allow_html=True
     )
+
 
 
 def card(content):
@@ -225,17 +530,26 @@ def card(content):
     )
 
 
+
 def metric(title, value):
 
     st.markdown(
         f"""
 <div class='metric'>
-<div class='metric-title'>{title}</div>
-<div class='metric-value'>{value}</div>
+
+<div class='metric-title'>
+{title}
+</div>
+
+<div class='metric-value'>
+{value}
+</div>
+
 </div>
 """,
         unsafe_allow_html=True
     )
+
 
 
 def footer():
@@ -243,7 +557,9 @@ def footer():
     st.markdown(
         """
 <div class='footer'>
+
 NOVARYN • Global Intelligence Court • Version 1.0
+
 </div>
 """,
         unsafe_allow_html=True
