@@ -4,6 +4,7 @@ Central configuration for the entire application.
 """
 
 import os
+import streamlit as st
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -68,7 +69,9 @@ SIDEBAR_STATE = "expanded"
 # Groq Configuration
 # ----------------------------------------------------
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+
+
+GROQ_API_KEY = st.secrets["groq"]["api_key"]
 
 GROQ_MODEL = "llama-3.3-70b-versatile"
 
