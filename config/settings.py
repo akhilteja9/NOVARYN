@@ -73,8 +73,7 @@ SIDEBAR_STATE = "expanded"
 
 GROQ_API_KEY = st.secrets["groq"]["api_key"]
 
-GROQ_MODEL = "llama-3.3-70b-versatile"
-
+GROQ_MODEL = "openai/gpt-oss-20b"
 TEMPERATURE = 0.30
 
 MAX_TOKENS = 2048
